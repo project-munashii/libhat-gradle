@@ -1,5 +1,6 @@
 plugins {
     `cpp-library`
+    `maven-publish`
 }
 
 group = "com.github.ZeroMemes"
@@ -27,4 +28,26 @@ library {
     privateHeaders.from("src/")
     publicHeaders.from("include/")
     linkage = listOf(Linkage.STATIC)
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/GITHUB_USERNAME/GITHUB_REPO")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        register("libhatGradle", MavenPublication::class) {
+            artifact(file("build/lib/main/release/libhat-gradle.lib"))
+        }
+    }
+}
+
+tasks.register("uploadRelease") {
+    dependsOn("createRelease", "publish")
 }
