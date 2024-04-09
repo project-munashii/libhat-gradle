@@ -36,8 +36,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/project-munashii/libhat-gradle")
             credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_TOKEN")
+                username = System.getenv("ORG_GRADLE_PROJECT_MYSECUREREPOSITORYUSERNAME")
+                password = System.getenv("ORG_GRADLE_PROJECT_MYSECUREREPOSITORYPASSWORD")
             }
         }
     }
