@@ -34,7 +34,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/GITHUB_USERNAME/GITHUB_REPO")
+            url = uri("https://maven.pkg.github.com/project-munashii/libhat-gradle")
             credentials {
                 username = System.getenv("GITHUB_USERNAME")
                 password = System.getenv("GITHUB_TOKEN")
