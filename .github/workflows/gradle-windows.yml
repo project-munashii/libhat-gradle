@@ -28,5 +28,5 @@ jobs:
             - name: Build libhat.lib
               run: ./gradlew uploadRelease
               env:
-                  GITHUB_USERNAME: "polyromanticasexual"
+                  GITHUB_USERNAME: ${{ secrets.GITHUB_ACTOR }}
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
