@@ -32,14 +32,17 @@ library {
     linkage = listOf(Linkage.STATIC)
 }
 
+println("Username: ${System.getenv("GITHUB_USERNAME")}")
+println("Password: ${System.getenv("GITHUB_TOKEN")}")
+
 publishing {
     repositories {
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/project-munashii/libhat-gradle")
             credentials {
-                println("Username: ${System.getenv("ORG_GRADLE_PROJECT_MYSECUREREPOSITORYUSERNAME")}")
-                println("Password: ${System.getenv("ORG_GRADLE_PROJECT_MYSECUREREPOSITORYPASSWORD")}")
+                println("Username: ${System.getenv("GITHUB_USERNAME")}")
+                println("Password: ${System.getenv("GITHUB_TOKEN")}")
                 username = System.getenv("GITHUB_USERNAME")
                 password = System.getenv("GITHUB_TOKEN")
             }
