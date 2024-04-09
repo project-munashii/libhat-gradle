@@ -1,3 +1,5 @@
+import org.gradle.api.credentials.PasswordCredentials
+
 plugins {
     `cpp-library`
     `maven-publish`
@@ -36,18 +38,26 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/project-munashii/libhat-gradle")
             credentials {
-                username = System.getenv("ORG_GRADLE_PROJECT_MYSECUREREPOSITORYUSERNAME")
-                password = System.getenv("ORG_GRADLE_PROJECT_MYSECUREREPOSITORYPASSWORD")
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
     publications {
         register("libhatGradle", MavenPublication::class) {
             artifact(file("build/lib/main/release/libhat-gradle.lib"))
+
         }
     }
 }
 
 tasks.register("uploadRelease") {
-    dependsOn("createRelease", "publish")
+    dependsOn("createRelease")
+    mustRunAfter("createRelease")
+    dependsOn("publish")
+}
+
+tasks.named("publishLibhatGradlePublicationToGitHubPackagesRepository") {
+    dependsOn("createRelease")
+    mustRunAfter("createRelease")
 }
