@@ -24,5 +24,7 @@ tasks.withType(CppCompile::class.java).configureEach {
 
 library {
     source.from("src/")
+    privateHeaders.from("src/")
     publicHeaders.from("include/")
+    linkage = listOf(Linkage.STATIC)
 }
