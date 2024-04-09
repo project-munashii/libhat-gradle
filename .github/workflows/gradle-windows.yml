@@ -26,5 +26,5 @@ jobs:
                   cache: "gradle"
                   
             - name: Build libhat.lib
-              run: gradlew createRelease
+              run: ./gradlew createRelease
 
