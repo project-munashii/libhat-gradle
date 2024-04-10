@@ -65,6 +65,12 @@ tasks.named("publishLibhatGradlePublicationToGitHubPackagesRepository") {
 
 tasks.named("publish").configure {
     onlyIf {
-        !project.version.toString().endsWith("-SNAPSHOT")
+        !project.version.toString().endsWith("-SNAPSHOT").also {
+            if (it) {
+                println("Not publishing snapshot version")
+            } else {
+                println("Publishing release version")
+            }
+        }
     }
 }
