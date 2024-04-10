@@ -54,7 +54,7 @@ publishing {
 tasks.register("uploadRelease") {
     dependsOn("createRelease")
     mustRunAfter("createRelease")
-    finalizedBy("publish")
+    dependsOn("publish")
 }
 
 /*
