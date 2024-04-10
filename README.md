@@ -27,6 +27,11 @@ dependencies {
 }
 ```
 
+### Notes
+- Prebuilt releases are only available for Windows x64.
+- Prebuilt releases only ship a .lib file for C++.
+- Prebuilt releases are built with MSVC v143.
+
 ## libhat
 Libhat is a modern, high-performance library for C++20 designed around game hacking, made by Brady Hahn under Based Inc.
 
