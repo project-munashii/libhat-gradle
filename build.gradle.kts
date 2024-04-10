@@ -32,37 +32,39 @@ library {
     linkage = listOf(Linkage.STATIC)
 }
 
-println("Username: ${System.getenv("GITHUB_USERNAME")}")
-println("Password: ${System.getenv("GITHUB_TOKEN")}")
-
 publishing {
     repositories {
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/project-munashii/libhat-gradle")
             credentials {
-                println("Username: ${System.getenv("GITHUB_USERNAME")}")
-                println("Password: ${System.getenv("GITHUB_TOKEN")}")
                 username = System.getenv("GITHUB_USERNAME")
                 password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
     publications {
-        register("libhatGradle", MavenPublication::class) {
-            artifact(file("build/lib/main/release/libhat-gradle.lib"))
-
-        }
+        //register("libhatGradle", MavenPublication::class) {
+        //    artifact(file("build/lib/main/release/libhat-gradle.lib"))
+//
+        //}
     }
 }
 
 tasks.register("uploadRelease") {
     dependsOn("createRelease")
     mustRunAfter("createRelease")
-    dependsOn("publish")
 }
 
+/*
 tasks.named("publishLibhatGradlePublicationToGitHubPackagesRepository") {
     dependsOn("createRelease")
     mustRunAfter("createRelease")
+}
+*/
+
+tasks.named("publish").configure {
+    onlyIf {
+        !project.version.toString().endsWith("-SNAPSHOT")
+    }
 }
