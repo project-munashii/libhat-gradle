@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.ZeroMemes"
-version = "1.0.0"
+version = "1.0.1-SNAPSHOT"
 
 repositories {
 
@@ -44,10 +44,6 @@ publishing {
         }
     }
     publications {
-        //register("libhatGradle", MavenPublication::class) {
-        //    artifact(file("build/lib/main/release/libhat-gradle.lib"))
-//
-        //}
     }
 }
 
@@ -56,13 +52,6 @@ tasks.register("uploadRelease") {
     mustRunAfter("createRelease")
     dependsOn("publish")
 }
-
-/*
-tasks.named("publishLibhatGradlePublicationToGitHubPackagesRepository") {
-    dependsOn("createRelease")
-    mustRunAfter("createRelease")
-}
-*/
 
 tasks.named("publish").configure {
     onlyIf {
